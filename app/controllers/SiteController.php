@@ -3,17 +3,35 @@
 namespace app\controllers;
 
 use src\forms\SearchForm;
+use src\Search\Http\Action\V1\SearchSettings\ToggleAction;
 use src\services\EmptySearchRequestExceptions;
+use src\services\ManticoreService;
 use Yii;
 use yii\web\Controller;
 
 class SiteController extends Controller
 {
+    private ManticoreService $service;
+
+    public function __construct(
+        $id,
+        $module,
+        ManticoreService $service,
+        $config = []
+    )
+    {
+        parent::__construct($id, $module, $config);
+        $this->service = $service;
+    }
+
     public function actions(): array
     {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+            ],
+            'search-settings' => [
+                'class' => ToggleAction::class,
             ],
         ];
     }

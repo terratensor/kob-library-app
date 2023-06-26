@@ -5,26 +5,27 @@ declare(strict_types=1);
 namespace src\services;
 
 use src\forms\SearchForm;
+use src\repositories\ParagraphDataProvider;
+use src\repositories\ParagraphRepository;
+use Yii;
 
 class ManticoreService
 {
-    private QuestionRepository $questionRepository;
+    private ParagraphRepository $paragraphRepository;
 
-    public function __construct(QuestionRepository $questionRepository)
+    public function __construct(ParagraphRepository $questionRepository)
     {
-        $this->questionRepository = $questionRepository;
+        $this->paragraphRepository = $questionRepository;
     }
 
     /**
      * @param SearchForm $form
-     * @return QuestionDataProvider
+     * @return ParagraphDataProvider
      * @throws EmptySearchRequestExceptions
      */
-    public function search(SearchForm $form): QuestionDataProvider
+    public function search(SearchForm $form): ParagraphDataProvider
     {
         $queryString = $form->query;
-
-        $queryString = SearchHelper::processAvatarUrls($queryString);
 
         if ($form->dictionary) {
             $indexName = \Yii::$app->params['indexes']['concept'];
@@ -32,73 +33,31 @@ class ManticoreService
 
         try {
             $comments = match ($form->matching) {
-                'query_string' => $this->questionRepository
+                'query_string' => $this->paragraphRepository
                     ->findByQueryStringNew($queryString, $indexName ?? null, $form),
-                'match_phrase' => $this->questionRepository
+                'match_phrase' => $this->paragraphRepository
                     ->findByMatchPhrase($queryString, $indexName ?? null, $form),
-                'match' => $this->questionRepository
+                'match' => $this->paragraphRepository
                     ->findByQueryStringMatch($queryString, $indexName ?? null, $form),
-                'in' => $this->questionRepository
-                    ->findByCommentId($queryString, $indexName ?? null, $form),
-                //            default => $this->questionRepository
-                //                ->findByQueryStringNew($queryString, $indexName ?? null, $form),
+                'in' => $this->paragraphRepository
+                    ->findByParagraphId($queryString, $indexName ?? null, $form),
             };
         } catch (\DomainException $e) {
             throw new EmptySearchRequestExceptions($e->getMessage());
         }
 
-        return new QuestionDataProvider(
+
+        return new ParagraphDataProvider(
             [
                 'query' => $comments,
                 'pagination' => [
-                    'pageSize' => Yii::$app->params['questions']['pageSize'],
+                    'pageSize' => Yii::$app->params['searchResults']['pageSize'],
                 ],
                 'sort' => [
                     'attributes' => [
-                        'type',
                         'position',
-                        'datetime'
                     ]
                 ],
             ]);
-    }
-
-    public function question(int $id): QuestionView
-    {
-        $questionBody = $this
-            ->questionRepository
-            ->findQuestionById($id);
-
-        $linkedQuestions = $this
-            ->questionRepository
-            ->findLinkedQuestionsById($id);
-
-        $comments = $this->questionRepository->findCommentsByQuestionId($id);
-
-        $commentsDataProvider = new QuestionDataProvider(
-            [
-                'query' => $comments,
-                'pagination' => [
-                    'pageSize' => 20,
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'type' => SORT_ASC,
-                        'position' => SORT_ASC,
-                    ],
-                    'attributes' => [
-                        'type',
-                        'position',
-                        'datetime'
-                    ]
-                ],
-            ]);
-
-        return QuestionView::create(
-            $id,
-            $questionBody,
-            $linkedQuestions,
-            $commentsDataProvider
-        );
     }
 }
