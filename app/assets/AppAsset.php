@@ -7,6 +7,7 @@
 
 namespace app\assets;
 
+use yii\bootstrap5\BootstrapPluginAsset;
 use yii\web\AssetBundle;
 
 /**
@@ -21,12 +22,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/docs.css',
         'css/default.css',
     ];
     public $js = [
+        'js/color-mode-toggler.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset'
+        'yii\bootstrap5\BootstrapAsset',
+        BootstrapPluginAsset::class
     ];
 }
