@@ -1,6 +1,29 @@
 # kob-library-app
 
+Копирование репозитория для разработки 
+
+Выберите или создайте папку с проектами, например c:\terratensor,
+
+Для создания наберите в консоли Git CMD
+```
+mkdir ./terratensor
+```
+
+Выбрать созданную папку, набрать в консоли Git CMD:
+```
+cd ./terratensor
+```
+
+Для клонирования репозитория terratensor/vpsssr_library_parser, наберите в консоли Git CMD:
+
+```
+git clone https://github.com/terratensor/kob-library-app.git
+```
+
 Запуск приложения на локальном компьютере для разработки
+
+Все команды необходимо запускать из папки проекта
+`terratensor/kob-library-app`
 
 ```
 docker compose down --remove-orphans
