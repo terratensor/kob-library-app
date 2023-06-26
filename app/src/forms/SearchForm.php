@@ -16,6 +16,7 @@ class SearchForm extends Model
     {
         return [
             ['query', 'string'],
+            ['matching', 'in', 'range' => array_keys($this->getMatching())],
             ['dictionary', 'boolean']
         ];
     }
@@ -26,7 +27,7 @@ class SearchForm extends Model
             'query_string' => 'По умолчанию',
             'match_phrase' => 'По соответствию фразе',
             'match' => 'По совпадению слов',
-            'in' => 'По номеру(ам) комментария или вопроса, номера через запятую',
+            'in' => 'По номеру(ам) параграфа, номера через запятую',
         ];
     }
 

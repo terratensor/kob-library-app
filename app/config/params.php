@@ -6,4 +6,11 @@ return [
     'senderName' => 'Example.com mailer',
     'frontendHostInfo' => getenv('FRONTEND_URL'),
     'githubRepositoryUrl' => getenv('GH_REPO_URL'),
+    'manticore' => [
+        'host' => 'manticore',
+        'port' => 9308
+    ],
+    'searchResults' => [
+        'pageSize' => (int)getenv('PAGE_SIZE'),
+    ],
 ];
