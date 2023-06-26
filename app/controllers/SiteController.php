@@ -2,10 +2,12 @@
 
 namespace app\controllers;
 
+
 use src\forms\SearchForm;
 use src\Search\Http\Action\V1\SearchSettings\ToggleAction;
 use src\services\EmptySearchRequestExceptions;
 use src\services\ManticoreService;
+use src\UrlShortener\Http\Action\V1\UrlShortener\ShortLinkAction;
 use Yii;
 use yii\web\Controller;
 
@@ -32,6 +34,9 @@ class SiteController extends Controller
             ],
             'search-settings' => [
                 'class' => ToggleAction::class,
+            ],
+            'short-link' => [
+                'class' => ShortLinkAction::Class,
             ],
         ];
     }

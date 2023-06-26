@@ -5,6 +5,7 @@
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
+use app\widgets\ShortLinkModal;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 
@@ -18,7 +19,7 @@ $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_k
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" class="h-100">
+<html lang="<?= Yii::$app->language ?>" class="h-100" data-bs-theme="dark">
 <head>
     <?= $this->render('favicon'); ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -29,16 +30,21 @@ $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_k
 <?php $this->beginBody() ?>
 <?= $this->render('red_header'); ?>
 
-<main role="main" class="flex-shrink-0 svodd">
-  <div class="container-fluid">
-      <?= Breadcrumbs::widget(
-          [
-              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-          ]
-      ) ?>
+<main role="main" class="flex-shrink-0 mb-3">
+  <div class="container-fluid pb-0">
+    <div class="d-flex justify-content-between align-items-baseline svodd-breadcrumb">
+        <?= Breadcrumbs::widget(
+            [
+                'links' => $this->params['breadcrumbs'] ?? [],
+            ]
+        ) ?>
+        <?= ShortLinkModal::widget(); ?>
+    </div>
       <?= Alert::widget() ?>
-      <?= $content ?>
   </div>
+
+    <?= $content ?>
+
 </main>
 
 <?= $this->render('footer'); ?>
