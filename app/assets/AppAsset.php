@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
         'css/default.css',
     ];
     public $js = [
-        'js/color-mode-toggler.js',
+        'js/script.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

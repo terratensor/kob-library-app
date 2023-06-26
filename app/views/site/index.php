@@ -7,6 +7,7 @@
  * @var string $errorQueryMessage
  */
 
+use app\widgets\ScrollWidget;
 use app\widgets\SearchResultsSummary;
 use src\forms\SearchForm;
 use src\models\Paragraph;
@@ -36,127 +37,130 @@ $inputTemplate = '<div class="input-group mb-2">
           </div>';
 
 ?>
-<div class="search-block">
-  <div class="container-fluid">
+  <div class="site-index">
+    <div class="search-block">
+      <div class="container-fluid">
 
-      <?php $form = ActiveForm::begin(
-          [
-              'method' => 'GET',
-              'action' => ['site/index'],
-              'options' => ['class' => 'pb-1 mb-2 pt-3', 'autocomplete' => 'off'],
-          ]
-      ); ?>
-    <div class="d-flex align-items-center">
-        <?= $form->field($model, 'query', [
-            'inputTemplate' => $inputTemplate,
-            'options' => [
-                'class' => 'w-100', 'role' => 'search'
-            ]
-        ])->textInput(
-            [
-                'type' => 'search',
-                'class' => 'form-control form-control-lg',
-                'placeholder' => "Поиск",
-                'autocomplete' => 'off',
-            ]
-        )->label(false); ?>
+          <?php $form = ActiveForm::begin(
+              [
+                  'method' => 'GET',
+                  'action' => ['site/index'],
+                  'options' => ['class' => 'pb-1 mb-2 pt-3', 'autocomplete' => 'off'],
+              ]
+          ); ?>
+        <div class="d-flex align-items-center">
+            <?= $form->field($model, 'query', [
+                'inputTemplate' => $inputTemplate,
+                'options' => [
+                    'class' => 'w-100', 'role' => 'search'
+                ]
+            ])->textInput(
+                [
+                    'type' => 'search',
+                    'class' => 'form-control form-control-lg',
+                    'placeholder' => "Поиск",
+                    'autocomplete' => 'off',
+                ]
+            )->label(false); ?>
+        </div>
+        <div id="search-setting-panel"
+             class="search-setting-panel <?= Yii::$app->session->get('show_search_settings') ? 'show-search-settings' : '' ?>">
+
+            <?= $form->field($model, 'matching', ['inline' => true, 'options' => ['class' => 'pb-2']])
+                ->radioList($model->getMatching(), ['class' => 'form-check-inline'])
+                ->label(false); ?>
+
+          <div class="row">
+            <div class="col-md-6 d-flex align-items-center">
+                <?= $form->field($model, 'dictionary', ['options' => ['class' => 'pb-2']])
+                    ->checkbox()
+                    ->label('Словарь концептуальных терминов (тестирование)'); ?>
+            </div>
+          </div>
+        </div>
+          <?php ActiveForm::end(); ?>
+      </div>
     </div>
-    <div id="search-setting-panel"
-         class="search-setting-panel <?= Yii::$app->session->get('show_search_settings') ? 'show-search-settings' : '' ?>">
-
-        <?= $form->field($model, 'matching', ['inline' => true, 'options' => ['class' => 'pb-2']])
-            ->radioList($model->getMatching(), ['class' => 'form-check-inline'])
-            ->label(false); ?>
-
+    <div class="container-fluid search-results">
+        <?php if (!$results): ?>
+            <?php if ($errorQueryMessage): ?>
+            <div class="card">
+              <div class="card-body"><?= $errorQueryMessage; ?></div>
+            </div>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php if ($results): ?>
+        <?php
+        // Property totalCount пусто пока не вызваны данные модели getModels(),
+        // сначала получаем массив моделей, потом получаем общее их количество
+        /** @var Paragraph[] $paragraphs */
+        $paragraphs = $results->getModels();
+        $pagination = new Pagination(
+            [
+                'totalCount' => $results->getTotalCount(),
+                'defaultPageSize' => Yii::$app->params['searchResults']['pageSize'],
+            ]
+        );
+        ?>
       <div class="row">
-        <div class="col-md-6 d-flex align-items-center">
-            <?= $form->field($model, 'dictionary', ['options' => ['class' => 'pb-2']])
-                ->checkbox()
-                ->label('Словарь концептуальных терминов (тестирование)'); ?>
+        <div class="col-md-12">
+            <?php if ($pagination->totalCount === 0): ?>
+              <p><strong>По вашему запросу ничего не найдено</strong></p>
+            <?php else: ?>
+              <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                    <?= SearchResultsSummary::widget(['pagination' => $pagination]); ?>
+                </div>
+              </div>
+            <?php endif; ?>
+            <?php foreach ($paragraphs as $paragraph): ?>
+              <div class="card mb-4" data-entity-id="<?= $paragraph->getId(); ?>">
+                <div class="card-header">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                        <?= $paragraph->book_name; ?>
+                    </div>
+                    <div><?= "#" . $paragraph->getId(); ?></div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <div class="card-text comment-text">
+                      <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
+                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
+                      <?php else: ?>
+                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->highlight['text'][0])); ?>
+                      <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+
+                </div>
+              </div>
+            <?php endforeach; ?>
+
+          <div class="container container-pagination">
+            <div class="detachable fixed-bottom">
+                <?php echo LinkPager::widget(
+                    [
+                        'pagination' => $pagination,
+                        'firstPageLabel' => true,
+                        'lastPageLabel' => true,
+                        'maxButtonCount' => 3,
+                        'options' => [
+                            'class' => 'd-flex justify-content-center'
+                        ],
+                        'listOptions' => ['class' => 'pagination mb-0']
+                    ]
+                ); ?>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-      <?php ActiveForm::end(); ?>
-  </div>
-</div>
-  <div class="container-fluid search-results">
-      <?php if (!$results): ?>
-          <?php if ($errorQueryMessage): ?>
-          <div class="card">
-            <div class="card-body"><?= $errorQueryMessage; ?></div>
-          </div>
-          <?php endif; ?>
-      <?php endif; ?>
-      <?php if ($results): ?>
-      <?php
-      // Property totalCount пусто пока не вызваны данные модели getModels(),
-      // сначала получаем массив моделей, потом получаем общее их количество
-      /** @var Paragraph[] $paragraphs */
-      $paragraphs = $results->getModels();
-          $pagination = new Pagination(
-          [
-              'totalCount' => $results->getTotalCount(),
-              'defaultPageSize' => Yii::$app->params['searchResults']['pageSize'],
-          ]
-      );
-      ?>
-        <div class="row">
-          <div class="col-md-12">
-              <?php if ($pagination->totalCount === 0): ?>
-                <p><strong>По вашему запросу ничего не найдено</strong></p>
-              <?php else: ?>
-                <div class="row">
-                  <div class="col-md-8 d-flex align-items-center">
-                      <?= SearchResultsSummary::widget(['pagination' => $pagination]); ?>
-                  </div>
-                </div>
-              <?php endif; ?>
-            <?php foreach ($paragraphs as $comment): ?>
-                <div class="card mb-4">
-                  <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <?= $comment->book_name; ?>
-                      </div>
-                      <div><?= "#" . $comment->getId();?></div>
-                    </div>
-                  </div>
-
-                  <div class="card-body">
-                    <div class="card-text comment-text">
-                        <?php if (!$comment->highlight['text'] || !$comment->highlight['text'][0]): ?>
-                            <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($comment->text)); ?>
-                        <?php else: ?>
-                            <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($comment->highlight['text'][0])); ?>
-                        <?php endif; ?>
-                    </div>
-                  </div>
-
-                  <div class="card-footer d-flex justify-content-between">
-
-                  </div>
-                </div>
-              <?php endforeach; ?>
-
-            <div class="container container-pagination">
-              <div class="detachable fixed-bottom">
-                  <?php echo LinkPager::widget(
-                      [
-                          'pagination' => $pagination,
-                          'firstPageLabel' => true,
-                          'lastPageLabel' => true,
-                          'maxButtonCount' => 3,
-                          'options' => [
-                              'class' => 'd-flex justify-content-center'
-                          ],
-                          'listOptions' => ['class' => 'pagination mb-0']
-                      ]
-                  ); ?>
-              </div>
-            </div>
-
-          </div>
-        </div>
+      <?= ScrollWidget::widget(['data_entity_id' => isset($paragraph) ? $paragraph->getId() : 0]); ?>
       <?php endif; ?>
   </div>
 <?php $js = <<<JS
