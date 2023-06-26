@@ -54,7 +54,6 @@ services:
       POSTGRES_USER: app
       POSTGRES_DB: vpsssr-library
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
-
     secrets:
       - app_db_password
     volumes:
