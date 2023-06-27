@@ -5,7 +5,7 @@ services:
     image: ${REGISTRY}/kob-library-app:${IMAGE_TAG}
     networks:
       - traefik-public
-      - default
+      - kob-library-net
     environment:
       APP_ENV: prod
       COMPOSER_ALLOW_SUPERUSER: 1
@@ -52,6 +52,8 @@ services:
     volumes:
       - manticore:/var/lib/manticore
       - manticore:/var/log/manticore
+    networks:
+      - kob-library-net
     deploy:
       placement:
         constraints: [ node.role == manager ]
@@ -72,6 +74,8 @@ services:
       - app_db_password
     volumes:
       - postgres:/var/lib/postgresql/data
+    networks:
+      - kob-library-net
     deploy:
       placement:
         constraints: [ node.role == manager ]
@@ -88,3 +92,4 @@ secrets:
 networks:
   traefik-public:
     external: true
+  kob-library-net:
