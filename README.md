@@ -41,3 +41,7 @@ docker compose up -d
 
 Проект можно открыть в браузере по ссылке:
 http://localhost:8000/
+
+```
+REGISTRY=localhost IMAGE_TAG=0 APP_DB_PASSWORD_FILE-./docker/development/secrets/app_db_password docker compose -f docker-compose-production.yml up -d
+```

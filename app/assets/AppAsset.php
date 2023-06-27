@@ -21,12 +21,12 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
         'css/docs.css',
+        'css/site.css',
         'css/default.css',
     ];
     public $js = [
-        'js/color-mode-toggler.js',
+        'js/script.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
