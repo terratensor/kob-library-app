@@ -13,4 +13,8 @@ return [
     'searchResults' => [
         'pageSize' => (int)getenv('PAGE_SIZE'),
     ],
+    'indexes' => [
+        'common' => 'vpsssr_library',
+        'concept' => 'vpsssr_library_concept',
+    ]
 ];
