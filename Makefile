@@ -34,10 +34,16 @@ build: build-frontend build-manticore
 
 build-frontend:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-        	--cache-from ${REGISTRY}/kob-library-app:cache-builder \
-        	--cache-from ${REGISTRY}/kob-library-app:cache \
-        	--tag ${REGISTRY}/skob-library-app:cache \
-        	--tag ${REGISTRY}/kob-library-app:${IMAGE_TAG} \
+		--target builder \
+		--cache-from ${REGISTRY}/kob-library-app:cache-builderr \
+		--tag ${REGISTRY}/kob-library-app:cache-builder \
+		--file app/docker/production/Dockerfile app
+
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+		--cache-from ${REGISTRY}/kob-library-app:cache-builder \
+		--cache-from ${REGISTRY}/kob-library-app:cache \
+		--tag ${REGISTRY}/kob-library-app:cache \
+		--tag ${REGISTRY}/kob-library-app:${IMAGE_TAG} \
         --file app/docker/production/Dockerfile app
 
 build-manticore:
