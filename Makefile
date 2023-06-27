@@ -1,6 +1,7 @@
 init: docker-down \
 	app-clear \
-	docker-pull docker-build docker-up
+	docker-pull docker-build docker-up \
+	app-init
 up: docker-up
 down: docker-down
 restart: down up
@@ -8,6 +9,14 @@ restart: down up
 app-clear:
 	docker run --rm -v ${PWD}/app:/app -w /app alpine sh -c 'rm -rf app/var/cache/* var/log/* var/test/*'
 	docker run --rm -v ${PWD}/app:/app -w /app alpine sh -c 'rm -rf app/runtime/cache/*'
+
+app-init: app-permissions app-composer-install
+
+app-permissions:
+	docker run --rm -v ${PWD}/app:/app -w /app alpine chmod 777 runtime/cache runtime/logs runtime/debug web/assets
+
+app-composer-install:
+	docker-compose run --rm php composer install
 
 docker-pull:
 	docker compose pull
