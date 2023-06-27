@@ -13,7 +13,7 @@ app-clear:
 app-init: app-permissions app-composer-install
 
 app-permissions:
-	docker run --rm -v ${PWD}/app:/app -w /app alpine chmod 777 runtime/cache runtime/logs runtime/debug web/assets
+	docker run --rm -v ${PWD}/app:/app -w /app alpine chmod 777 runtime web/assets
 
 app-composer-install:
 	docker-compose run --rm php composer install
