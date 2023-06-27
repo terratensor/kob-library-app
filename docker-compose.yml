@@ -62,6 +62,11 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  kob-library-parser:
+    image: ghcr.io/terratensor/kob-library-parser:0.1.0
+    environment:
+      PG_DSN: "host=postgres user=app password=secret dbname=vpsssr-library port=5432 sslmode=disable TimeZone=Europe/Moscow"
+
 secrets:
   app_db_password:
     file: ./docker/development/secrets/app_db_password
