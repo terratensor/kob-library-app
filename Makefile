@@ -76,4 +76,4 @@ deploy:
 
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'mkdir kob_${BUILD_NUMBER}/secrets'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cp .secrets_kob_library/* kob_${BUILD_NUMBER}/secrets'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd kob_${BUILD_NUMBER} && docker stack deploy --compose-file docker-compose.yml svodd --with-registry-auth --prune'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd kob_${BUILD_NUMBER} && docker stack deploy --compose-file docker-compose.yml kob-library --with-registry-auth --prune'
