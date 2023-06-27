@@ -37,7 +37,6 @@ services:
         delay: 15s
 
   manticore:
-    container_name: kob-library-manticore
     image: ${REGISTRY}/kob-library-manticore:${IMAGE_TAG}
     cap_add:
       - IPC_LOCK
@@ -60,10 +59,7 @@ services:
       endpoint_mode: dnsrr
 
   postgres:
-    container_name: kob-library-postgres
     image: postgres:15.1-alpine
-    ports:
-      - "54323:5432"
     environment:
       APP_ENV: dev
       POSTGRES_HOST: ${APP_POSTGRES_HOST}
