@@ -11,10 +11,10 @@ services:
       COMPOSER_ALLOW_SUPERUSER: 1
       FRONTEND_URL: https://kob.svodd.ru
       GH_REPO_URL: https://github.com/terratensor/kob-library-app
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: app
+      POSTGRES_HOST: ${APP_POSTGRES_HOST}
+      POSTGRES_USER: ${APP_POSTGRES_USER}
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
-      POSTGRES_DB: vpsssr-library
+      POSTGRES_DB: ${APP_POSTGRES_DB}
       PAGE_SIZE: 50
     secrets:
       - app_db_password
@@ -38,12 +38,7 @@ services:
 
   manticore:
     container_name: kob-library-manticore
-    image: manticoresearch/manticore
-    ports:
-      - "127.0.0.1:9306:9306"
-      - "127.0.0.1:9308:9308"
-      - "127.0.0.1:9312:9312"
-
+    image: ${REGISTRY}/kob-library-manticore:${IMAGE_TAG}
     cap_add:
       - IPC_LOCK
     ulimits:
@@ -57,7 +52,6 @@ services:
     volumes:
       - manticore:/var/lib/manticore
       - manticore:/var/log/manticore
-      - ./docker/manticore/manticore.conf:/etc/manticoresearch/manticore.conf
     deploy:
       placement:
         constraints: [ node.role == manager ]
@@ -70,9 +64,9 @@ services:
       - "54323:5432"
     environment:
       APP_ENV: dev
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: app
-      POSTGRES_DB: vpsssr-library
+      POSTGRES_HOST: ${APP_POSTGRES_HOST}
+      POSTGRES_USER: ${APP_POSTGRES_USER}
+      POSTGRES_DB: ${APP_POSTGRES_DB}
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
     secrets:
       - app_db_password
@@ -82,6 +76,10 @@ services:
       placement:
         constraints: [ node.role == manager ]
       endpoint_mode: dnsrr
+
+volumes:
+  postgres:
+  manticore:
 
 secrets:
   app_db_password:
