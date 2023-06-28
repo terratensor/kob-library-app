@@ -28,8 +28,7 @@ class ShortLinkModal extends Widget
         }
         $search = $get['search'];
 
-        if ((key_exists('query', $search) && $search['query'] !== "") ||
-            (key_exists('date', $search) && $search['date'] !== "")) {
+        if ((key_exists('query', $search) && $search['query'] !== "")) {
 
             $this->view->registerJs($this->getJS());
 

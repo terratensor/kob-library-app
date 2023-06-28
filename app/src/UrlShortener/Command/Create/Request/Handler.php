@@ -24,11 +24,13 @@ class Handler
     {
         $origin = $command->origin;
 
+        $host = \Yii::$app->params['urlShortenerHost'];
+
         $response = $this->client
             ->createRequest()
             ->setFormat(Client::FORMAT_JSON)
             ->setMethod('post')
-            ->setUrl('url-shortener:8000/create')
+            ->setUrl("$host/create")
             ->setData(['origin' => $origin])
             ->send();
 
