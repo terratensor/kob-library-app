@@ -15,6 +15,7 @@ services:
       POSTGRES_DB: vpsssr-library
       PAGE_SIZE: 50
       URL_SHORTENER_HOST: url-shortener:8000
+      URL_SHORTENER_URL: http://localhost
     secrets:
       - app_db_password
     volumes:
