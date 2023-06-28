@@ -52,7 +52,7 @@ $menuItems = [
         </button>
         <div class="offcanvas-lg offcanvas-end flex-grow-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div class="offcanvas-header px-4 pb-0">
-                <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel">ФКТ Поиск</h5>
+                <h5 class="offcanvas-title text-white" id="bdNavbarOffcanvasLabel"><?= Yii::$app->name; ?></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"
                         data-bs-target="#bdNavbar"></button>
             </div>

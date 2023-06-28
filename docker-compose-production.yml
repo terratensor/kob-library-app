@@ -16,6 +16,7 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
       POSTGRES_DB: ${APP_POSTGRES_DB}
       PAGE_SIZE: 50
+      URL_SHORTENER_HOST: https://url.svodd.ru
     secrets:
       - app_db_password
     deploy:
