@@ -16,7 +16,7 @@ class ShortLinkModal extends Widget
     public function init(): void
     {
         $this->origin = Yii::$app->request->getAbsoluteUrl();
-        $this->host = Yii::$app->params['frontendHostInfo'];
+        $this->host = Yii::$app->params['urlShortenerUrl'];
     }
 
     public function run(): void
