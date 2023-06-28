@@ -244,6 +244,9 @@
     --dr-search-form-bg: #3d3d40;
     --dr-search-form-body: #cfd1d7;
     --dr-search-form-border: #191a1c;
+
+    /* Цвет рамки danger card */
+    --bs-danger-rgb: 165, 0, 0
 }
 
 /* СТИЛИ */

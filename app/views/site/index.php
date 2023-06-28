@@ -7,6 +7,7 @@
  * @var string $errorQueryMessage
  */
 
+use app\widgets\NeighboringParagraphs;
 use app\widgets\ScrollWidget;
 use app\widgets\SearchResultsSummary;
 use src\forms\SearchForm;
@@ -16,7 +17,6 @@ use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\LinkPager;
 use yii\data\Pagination;
-use yii\helpers\Url;
 
 $this->title = Yii::$app->name;
 $this->params['breadcrumbs'][] = $this->title;
@@ -84,7 +84,7 @@ $inputTemplate = '<div class="input-group mb-2">
     <div class="container-fluid search-results">
         <?php if (!$results): ?>
             <?php if ($errorQueryMessage): ?>
-            <div class="card">
+            <div class="card border-danger mb-3">
               <div class="card-body"><?= $errorQueryMessage; ?></div>
             </div>
             <?php endif; ?>
@@ -134,8 +134,8 @@ $inputTemplate = '<div class="input-group mb-2">
                   </div>
                 </div>
 
-                <div class="card-footer d-flex justify-content-between">
-
+                <div class="card-footer d-flex justify-content-end">
+                  <?= NeighboringParagraphs::Widget(['paragraphID' => $paragraph->getId()]); ?>
                 </div>
               </div>
             <?php endforeach; ?>
