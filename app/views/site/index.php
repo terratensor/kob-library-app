@@ -84,7 +84,7 @@ $inputTemplate = '<div class="input-group mb-2">
     <div class="container-fluid search-results">
         <?php if (!$results): ?>
             <?php if ($errorQueryMessage): ?>
-            <div class="card">
+            <div class="card border-danger mb-3">
               <div class="card-body"><?= $errorQueryMessage; ?></div>
             </div>
             <?php endif; ?>
