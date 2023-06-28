@@ -168,7 +168,7 @@ $inputTemplate = '<div class="input-group mb-2">
               <div class="py-3">
                 <h5>Товарищи! </h5>
                 <p>Мы запустили поисковик по текстам толстых книг ВП СССР.</p>
-                <strong>★ <span class="link">https://kob.svodd.ru</span></strong>
+                <strong>★ <a href="https://kob.svodd.ru">https://kob.svodd.ru</a></strong>
               </div>
             </div>
 
