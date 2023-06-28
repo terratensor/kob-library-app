@@ -190,7 +190,7 @@ $inputTemplate = '<div class="input-group mb-2">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">«предиктор + пфу»</h5>
-                    <p class="card-text">★ <span class="link">https://svodd.ru/exxyAS9p</span></p>
+                    <p class="card-text">★ <a href="https://svodd.ru/exxyAS9p">https://svodd.ru/exxyAS9p</a></p>
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ $inputTemplate = '<div class="input-group mb-2">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">«достоевский + магия»</h5>
-                    <p class="card-text">★ <span class="link">https://svodd.ru/NYxu2lGg</span></p>
+                    <p class="card-text">★ <a href="https://svodd.ru/NYxu2lGg">https://svodd.ru/NYxu2lGg</a></p>
                   </div>
                 </div>
               </div>
@@ -206,7 +206,7 @@ $inputTemplate = '<div class="input-group mb-2">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">«пушкин + масоны»</h5>
-                    <p class="card-text">★ <span class="link">https://svodd.ru/hOJ0iS0u</span></p>
+                    <p class="card-text">★ <a href="https://svodd.ru/hOJ0iS0u">https://svodd.ru/hOJ0iS0u</a></p>
                   </div>
                 </div>
               </div>
