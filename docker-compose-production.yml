@@ -18,6 +18,7 @@ services:
       PAGE_SIZE: 50
       URL_SHORTENER_HOST: http://url-shortener:8000
       URL_SHORTENER_URL: https://svodd.ru
+      COOKIE_DOMAIN: svodd.ru
     secrets:
       - app_db_password
     deploy:

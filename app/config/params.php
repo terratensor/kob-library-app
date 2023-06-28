@@ -4,6 +4,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
+    'cookieDomain' => getenv('COOKIE_DOMAIN'),
     'frontendHostInfo' => getenv('FRONTEND_URL'),
     'githubRepositoryUrl' => getenv('GH_REPO_URL'),
     'urlShortenerHost' => getenv('URL_SHORTENER_HOST'), // Хост в сети интернет, в локальной сети docker - это наименования сервиса
