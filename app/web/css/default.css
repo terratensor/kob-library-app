@@ -352,3 +352,39 @@ input:focus:-moz-placeholder {
 input:focus:-ms-input-placeholder {
     color: transparent;
 }
+
+
+@media (min-width: 992px){
+    .px-lg-5 {
+        padding-right: 5rem !important;
+        padding-left: 5rem !important;
+    }
+}
+
+.paragraph {
+    font-size: 1.05rem;
+    padding-bottom: 4rem;
+}
+.paragraph-header {
+    padding-bottom: 2rem;
+}
+.paragraph-text {
+    padding-bottom: 1rem;
+}
+
+.paragraph-text h1,
+.paragraph-text h2,
+.paragraph-text h3,
+.paragraph-text h4,
+.paragraph-text h5,
+.paragraph-text h5 {
+    font-size: 1.2rem;
+}
+.book-name {
+    padding: 5px 0;
+}
+
+.book-name > div {
+    padding: 3px 5px 5px 0;
+    border-top: 1px solid;
+}
