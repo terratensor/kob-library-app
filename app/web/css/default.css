@@ -384,8 +384,6 @@ input:focus:-ms-input-placeholder {
 .paragraph {
     font-size: 1.15rem;
     padding-bottom: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .paragraph-header {
