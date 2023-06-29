@@ -105,51 +105,42 @@ $inputTemplate = '<div class="input-group mb-2">
       <div class="row">
         <div class="col-md-12">
             <?php if ($pagination->totalCount === 0): ?>
-              <p><strong>По вашему запросу ничего не найдено</strong></p>
+              <h5>По вашему запросу ничего не найдено</h5>
             <?php else: ?>
               <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
                     <?= SearchResultsSummary::widget(['pagination' => $pagination]); ?>
                 </div>
               </div>
-            <?php endif; ?>
 
+              <div class="card pt-3">
+                <div class="card-body">
+                    <?php foreach ($paragraphs as $paragraph): ?>
+                      <div class="px-md-5 px-lg-5 px-sm-3 paragraph" data-entity-id="<?= $paragraph->getId(); ?>">
+                        <div class="paragraph-header">
+                          <div class="d-flex justify-content-between">
+                            <div>
 
-          <div class="card pt-3">
-            <div class="card-body">
-
-
-            <?php foreach ($paragraphs as $paragraph): ?>
-              <div class="px-md-5 px-lg-5 px-sm-3 paragraph" data-entity-id="<?= $paragraph->getId(); ?>">
-                <div class="paragraph-header">
-                  <div class="d-flex justify-content-between">
-                    <div>
-
-                    </div>
-                    <div><?= "#" . $paragraph->getId(); ?></div>
-                  </div>
+                            </div>
+                            <div><?= Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?></div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="paragraph-text">
+                              <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
+                                  <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
+                              <?php else: ?>
+                                  <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->highlight['text'][0])); ?>
+                              <?php endif; ?>
+                          </div>
+                        </div>
+                        <div class="book-name"><strong><i>ВП СССР — <?=$paragraph->book_name; ?></i></strong></div>
+                      </div>
+                    <?php endforeach; ?>
                 </div>
-
-                <div class="card-body1">
-                  <div class="card-text1 paragraph-text">
-                      <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
-                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
-                      <?php else: ?>
-                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->highlight['text'][0])); ?>
-                      <?php endif; ?>
-                  </div>
-                </div>
-                <div class="book-name"><strong><i>ВП СССР — <?=$paragraph->book_name; ?></i></strong></div>
-<!--                <div class="card-footer d-flex justify-content-end">-->
-<!--                  --><?php //= NeighboringParagraphs::Widget(['paragraphID' => $paragraph->getId()]); ?>
-<!--                </div>-->
               </div>
-            <?php endforeach; ?>
-            </div>
-          </div>
 
-
-
+            <?php endif; ?>
 
           <div class="container container-pagination">
             <div class="detachable fixed-bottom">
