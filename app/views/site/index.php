@@ -134,7 +134,9 @@ $inputTemplate = '<div class="input-group mb-2">
                               <?php endif; ?>
                           </div>
                         </div>
-                        <div class="book-name"><strong><i>ВП СССР — <?=$paragraph->book_name; ?></i></strong></div>
+                        <div class="d-flex justify-content-start book-name">
+                          <div><strong><i>ВП СССР — <?=$paragraph->book_name; ?></i></strong></div>
+                        </div>
                       </div>
                     <?php endforeach; ?>
                 </div>
