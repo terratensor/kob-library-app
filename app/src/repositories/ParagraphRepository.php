@@ -221,6 +221,8 @@ class ParagraphRepository
                 'post_tags' => '</mark>'
             ]
         );
+        $search->sort('id', 'asc');
+
         return $search;
     }
 

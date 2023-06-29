@@ -54,10 +54,10 @@ class ManticoreService
                     'pageSize' => Yii::$app->params['searchResults']['pageSize'],
                 ],
                 'sort' => [
-                    'defaultOrder' => [
-                        'id' => SORT_ASC,
-                        'position' => SORT_ASC,
-                    ],
+//                    'defaultOrder' => [
+//                        'id' => SORT_ASC,
+//                        'position' => SORT_ASC,
+//                    ],
                     'attributes' => [
                         'id',
                         'position',
