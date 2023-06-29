@@ -355,7 +355,7 @@ input:focus:-ms-input-placeholder {
 
 
 .paragraph {
-    font-size: 1.05rem;
+    font-size: 1.055rem;
     padding-bottom: 2rem;
 }
 
@@ -364,7 +364,7 @@ input:focus:-ms-input-placeholder {
     padding-bottom: 1rem;
 }
 .paragraph-text {
-    font-family: Georgia, serif;
+    font-family: "PT Serif", "Noto Sans Armenian", "Noto Sans Bengali", serif;
     line-height: 1.5;
     padding-bottom: 1rem;
 }
@@ -378,7 +378,7 @@ input:focus:-ms-input-placeholder {
     font-size: 1.2rem;
 }
 .book-name {
-    font-family: Georgia, serif;
+    font-family: "PT Serif", "Noto Sans Armenian", "Noto Sans Bengali", serif;
     line-height: 1.5;
     padding: 5px 0;
 }
@@ -390,7 +390,7 @@ input:focus:-ms-input-placeholder {
 
 @media (min-width: 768px) {
     .paragraph {
-        font-size: 1.1rem;
+        font-size: 1.115rem;
     }
     .px-md-5 {
         padding-right: 5rem !important;
@@ -404,7 +404,7 @@ input:focus:-ms-input-placeholder {
         padding-left: 10rem !important;
     }
     .paragraph {
-        font-size: 1.1rem;
+        font-size: 1.125rem;
         padding-bottom: 4rem !important;
     }
     .paragraph-header {
@@ -414,7 +414,7 @@ input:focus:-ms-input-placeholder {
 
 @media (min-width: 1200px) {
     .paragraph {
-        font-size: 1.15rem;
+        font-size: 1.1875rem;
     }
     .px-lg-5 {
         padding-right: 15rem !important;
