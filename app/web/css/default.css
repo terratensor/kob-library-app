@@ -355,7 +355,7 @@ input:focus:-ms-input-placeholder {
 
 
 .paragraph {
-    font-size: 1rem;
+    font-size: 1.05rem;
     padding-bottom: 2rem;
 }
 
@@ -390,7 +390,7 @@ input:focus:-ms-input-placeholder {
 
 @media (min-width: 768px) {
     .paragraph {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
     }
     .px-md-5 {
         padding-right: 5rem !important;
@@ -414,7 +414,7 @@ input:focus:-ms-input-placeholder {
 
 @media (min-width: 1200px) {
     .paragraph {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
     .px-lg-5 {
         padding-right: 15rem !important;
