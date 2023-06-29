@@ -359,14 +359,21 @@ input:focus:-ms-input-placeholder {
         padding-right: 5rem !important;
         padding-left: 5rem !important;
     }
+    .paragraph {
+        font-size: 1.05rem;
+        padding-bottom: 4rem !important;
+    }
+    .paragraph-header {
+        padding-bottom: 2rem !important;
+    }
 }
 
 .paragraph {
     font-size: 1.05rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
 .paragraph-header {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 .paragraph-text {
     padding-bottom: 1rem;
