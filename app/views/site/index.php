@@ -116,7 +116,7 @@ $inputTemplate = '<div class="input-group mb-2">
               <div class="card pt-3">
                 <div class="card-body">
                     <?php foreach ($paragraphs as $paragraph): ?>
-                      <div class="px-md-5 px-lg-5 px-sm-3 paragraph" data-entity-id="<?= $paragraph->getId(); ?>">
+                      <div class="px-xl-5 px-lg-5 px-md-5 px-sm-3 paragraph" data-entity-id="<?= $paragraph->getId(); ?>">
                         <div class="paragraph-header">
                           <div class="d-flex justify-content-between">
                             <div>
