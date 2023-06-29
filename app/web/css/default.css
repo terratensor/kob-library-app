@@ -353,11 +353,17 @@ input:focus:-ms-input-placeholder {
     color: transparent;
 }
 
+@media (min-width: 768px) {
+    .px-md-5 {
+        padding-right: 5rem !important;
+        padding-left: 5rem !important;
+    }
+}
 
 @media (min-width: 992px){
     .px-lg-5 {
-        padding-right: 5rem !important;
-        padding-left: 5rem !important;
+        padding-right: 10rem !important;
+        padding-left: 10rem !important;
     }
     .paragraph {
         font-size: 1.05rem;
@@ -368,14 +374,26 @@ input:focus:-ms-input-placeholder {
     }
 }
 
-.paragraph {
-    font-size: 1.05rem;
-    padding-bottom: 2rem;
+@media (min-width: 1200px) {
+    .px-lg-5 {
+        padding-right: 15rem !important;
+        padding-left: 15rem !important;
+    }
 }
+
+.paragraph {
+    font-size: 1.15rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 .paragraph-header {
     padding-bottom: 1rem;
 }
 .paragraph-text {
+    font-family: Georgia, serif;
+    line-height: 1.5;
     padding-bottom: 1rem;
 }
 
@@ -388,6 +406,8 @@ input:focus:-ms-input-placeholder {
     font-size: 1.2rem;
 }
 .book-name {
+    font-family: Georgia, serif;
+    line-height: 1.5;
     padding: 5px 0;
 }
 
