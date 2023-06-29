@@ -113,19 +113,25 @@ $inputTemplate = '<div class="input-group mb-2">
                 </div>
               </div>
             <?php endif; ?>
+
+
+          <div class="card pt-3">
+            <div class="card-body">
+
+
             <?php foreach ($paragraphs as $paragraph): ?>
-              <div class="card mb-4" data-entity-id="<?= $paragraph->getId(); ?>">
-                <div class="card-header">
+              <div class="px-md-5 px-lg-5 px-sm-3 paragraph" data-entity-id="<?= $paragraph->getId(); ?>">
+                <div class="paragraph-header">
                   <div class="d-flex justify-content-between">
                     <div>
-                        <?= $paragraph->book_name; ?>
+
                     </div>
                     <div><?= "#" . $paragraph->getId(); ?></div>
                   </div>
                 </div>
 
-                <div class="card-body">
-                  <div class="card-text comment-text">
+                <div class="card-body1">
+                  <div class="card-text1 paragraph-text">
                       <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
                           <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
                       <?php else: ?>
@@ -133,12 +139,17 @@ $inputTemplate = '<div class="input-group mb-2">
                       <?php endif; ?>
                   </div>
                 </div>
-
-                <div class="card-footer d-flex justify-content-end">
-                  <?= NeighboringParagraphs::Widget(['paragraphID' => $paragraph->getId()]); ?>
-                </div>
+                <div class="book-name"><strong><i>ВП СССР — <?=$paragraph->book_name; ?></i></strong></div>
+<!--                <div class="card-footer d-flex justify-content-end">-->
+<!--                  --><?php //= NeighboringParagraphs::Widget(['paragraphID' => $paragraph->getId()]); ?>
+<!--                </div>-->
               </div>
             <?php endforeach; ?>
+            </div>
+          </div>
+
+
+
 
           <div class="container container-pagination">
             <div class="detachable fixed-bottom">
