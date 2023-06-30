@@ -124,8 +124,7 @@ $inputTemplate = '<div class="input-group mb-2">
 
                             </div>
                             <div>
-                                <?php Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?>
-                                <?= FollowParagraph::widget(['paragraph' => $paragraph, 'pagination' => $pagination]); ?>
+                                <?= Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?>
                             </div>
                           </div>
                         </div>
