@@ -54,13 +54,32 @@ class ManticoreService
                     'pageSize' => Yii::$app->params['searchResults']['pageSize'],
                 ],
                 'sort' => [
-//                    'defaultOrder' => [
-//                        'id' => SORT_ASC,
-//                        'position' => SORT_ASC,
-//                    ],
                     'attributes' => [
                         'id',
                         'position',
+                    ]
+                ],
+            ]);
+    }
+
+    public function book(int $id): ParagraphDataProvider
+    {
+        $paragraphs = $this->paragraphRepository->findParagraphsByBookId($id);
+
+        return new ParagraphDataProvider(
+            [
+                'query' => $paragraphs,
+                'pagination' => [
+                    'pageSize' => Yii::$app->params['searchResults']['pageSize'],
+                ],
+                'sort' => [
+                    'defaultOrder' => [
+                        'id' => SORT_ASC,
+                        'position' => SORT_ASC,
+                    ],
+                    'attributes' => [
+                        'id',
+                        'position'
                     ]
                 ],
             ]);

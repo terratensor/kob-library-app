@@ -233,4 +233,48 @@ class ParagraphRepository
     {
         $this->index = $index;
     }
+
+    public function findBookById(int $id): \Manticoresearch\ResultSet
+    {
+        $this->search->reset();
+
+        $search = $this->search->setIndex($this->indexName);
+
+        $search->search('');
+        $search->filter('book_id', $id);
+
+        return $search->get();
+    }
+
+    public function findParagraphsByBookId(int $id): Search
+    {
+        $this->search->reset();
+
+        $search = $this->search->setIndex($this->indexName);
+
+
+        $search->filter('book_id', 'in', $id);
+//        $search->filter('type', 'in', 2, Search::FILTER_NOT);
+
+        // Запрос переделан под фильтр
+        $query = new BoolQuery();
+
+
+        $query->must(new In('id', $id));
+        $this->index->search($query);
+
+
+//        var_dump($search);
+        $search->highlight(
+            ['text'],
+            [
+                'limit' => 0,
+                'no_match_size' => 0,
+                'pre_tags' => '<mark>',
+                'post_tags' => '</mark>'
+            ]
+        );
+        return $search;
+
+    }
 }
