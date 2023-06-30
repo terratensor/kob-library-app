@@ -45,3 +45,39 @@ http://localhost:8000/
 ```
 REGISTRY=localhost IMAGE_TAG=0 APP_DB_PASSWORD_FILE-./docker/development/secrets/app_db_password docker compose -f docker-compose-production.yml up -d
 ```
+
+
+Создание дампа БД:
+```
+docker exec -it kob-library-postgres bash
+```
+
+```
+ pg_dump --dbname=vpsssr-library --username=app --host=postgres | gzip -9 > vpsssr-library_backup.gz
+```
+Enter password
+`exit`
+
+Копирование файла из контейнера:
+
+```
+docker cp kob-library-postgres:/vpsssr-library_backup.gz vpsssr-library_backup.gz
+```
+
+```
+scp -P 22 /mnt/c/terratensor/backup/filename.sql root@host:/home/deploy/filname.sql
+```
+
+`psql -U app vpsssr-library`
+`drop schema public CASCADE;`
+
+остановить стек, удалить волум бд, перезапустить стек, скопировать файл дампа в контейнер, запустить
+
+```
+cp vpsssr-library_backup-filename.gz book-parser-postgres:app/vpsssr-library_backup-filename.gz
+
+gzip -d vpsssr-library_backup-filename.gz
+
+psql -U app -d lib < vpsssr-library_backup-filename.sql
+
+```

@@ -421,3 +421,10 @@ input:focus:-ms-input-placeholder {
         padding-left: 15rem !important;
     }
 }
+
+.paragraph .blockquote {
+    font-size: 1.055rem;
+    border-left: 2px solid var(--sv-quote-border);
+    padding: 10px 20px;
+    margin: 15px 0 0 0;
+}
