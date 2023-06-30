@@ -25,13 +25,13 @@ class BookController extends Controller
 
     public function actionView($id): string
     {
-        $results = null;
         $form = new SearchForm();
-        $errorQueryMessage = '';
 
-        $results = $this->service->book((int)$id);
+        $book = $this->service->findBook($id);
+        $results = $this->service->findByBook((int)$id);
 
         return $this->render('view', [
+            'book' => $book,
             'results' => $results,
             'model' => $form
         ]);

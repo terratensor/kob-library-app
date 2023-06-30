@@ -242,6 +242,7 @@ class ParagraphRepository
 
         $search->search('');
         $search->filter('book_id', $id);
+        $search->limit(1);
 
         return $search->get();
     }
@@ -254,7 +255,6 @@ class ParagraphRepository
 
 
         $search->filter('book_id', 'in', $id);
-//        $search->filter('type', 'in', 2, Search::FILTER_NOT);
 
         // Запрос переделан под фильтр
         $query = new BoolQuery();
@@ -263,8 +263,6 @@ class ParagraphRepository
         $query->must(new In('id', $id));
         $this->index->search($query);
 
-
-//        var_dump($search);
         $search->highlight(
             ['text'],
             [
@@ -275,6 +273,5 @@ class ParagraphRepository
             ]
         );
         return $search;
-
     }
 }

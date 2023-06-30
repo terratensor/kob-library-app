@@ -62,7 +62,7 @@ class ManticoreService
             ]);
     }
 
-    public function book(int $id): ParagraphDataProvider
+    public function findByBook(int $id): ParagraphDataProvider
     {
         $paragraphs = $this->paragraphRepository->findParagraphsByBookId($id);
 
@@ -83,5 +83,10 @@ class ManticoreService
                     ]
                 ],
             ]);
+    }
+
+    public function findBook($id): \Manticoresearch\ResultSet
+    {
+        return $this->paragraphRepository->findBookById((int)$id);
     }
 }

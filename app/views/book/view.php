@@ -2,14 +2,15 @@
 
 /** @var yii\web\View $this
  * @var ParagraphDataProvider $results
+ * @var ResultSet $book
  * @var Pagination $pages
  * @var SearchForm $model
  * @var string $errorQueryMessage
  */
 
-use app\widgets\NeighboringParagraphs;
 use app\widgets\ScrollWidget;
 use app\widgets\SearchResultsSummary;
+use Manticoresearch\ResultSet;
 use src\forms\SearchForm;
 use src\models\Paragraph;
 use src\repositories\ParagraphDataProvider;
@@ -107,29 +108,27 @@ $inputTemplate = '<div class="input-group mb-2">
                     <?php if ($pagination->totalCount === 0): ?>
                         <h5>По вашему запросу ничего не найдено</h5>
                     <?php else: ?>
-                        <div class="row">
-                            <div class="col-md-8 d-flex align-items-center">
-                                <?= SearchResultsSummary::widget(['pagination' => $pagination]); ?>
-                            </div>
+                      <div class="d-flex justify-content-center text-center page-book-name">
+                        <div class="px-xl-5 px-lg-5 px-md-5 px-sm-3">
+                          <h3>ВП СССР — <?= $book->current()->book_name; ?></h3>
                         </div>
 
-                        <div class="card pt-3">
-                            <div class="card-body">
-                                <?php foreach ($paragraphs as $paragraph): ?>
-                                    <div class="px-xl-5 px-lg-5 px-md-5 px-sm-3 paragraph pb-0" style="padding-bottom: 0 !important;" data-entity-id="<?= $paragraph->getId(); ?>">
+                      </div>
+                      <div class="card pt-3">
+                        <div class="card-body">
+                            <?php foreach ($paragraphs as $paragraph): ?>
+                              <div class="px-xl-5 px-lg-5 px-md-5 px-sm-3 paragraph book-mode"
+                                   data-entity-id="<?= $paragraph->getId(); ?>">
 
-                                        <div>
-                                            <div class="paragraph-text">
-                                                <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
-                                                    <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
-                                                <?php else: ?>
-                                                    <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->highlight['text'][0])); ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-<!--                                        <div class="d-flex justify-content-start book-name">-->
-<!--                                            <div><strong><i>ВП СССР — --><?php //=$paragraph->book_name; ?><!--</i></strong></div>-->
-<!--                                        </div>-->
+                                <div class="position-link" id="<?=$paragraph->position; ?>">
+                                  <div class="paragraph-text">
+                                      <?php if (!$paragraph->highlight['text'] || !$paragraph->highlight['text'][0]): ?>
+                                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->text)); ?>
+                                      <?php else: ?>
+                                          <?php echo Yii::$app->formatter->asRaw(htmlspecialchars_decode($paragraph->highlight['text'][0])); ?>
+                                      <?php endif; ?>
+                                  </div>
+                                </div>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

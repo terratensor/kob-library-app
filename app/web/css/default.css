@@ -377,6 +377,14 @@ input:focus:-ms-input-placeholder {
 .paragraph-text h5 {
     font-size: 1.2rem;
 }
+.book-mode .paragraph-text h1,
+.book-mode .paragraph-text h2,
+.book-mode .paragraph-text h3,
+.book-mode .paragraph-text h4,
+.book-mode .paragraph-text h5,
+.book-mode .paragraph-text h5 {
+    padding: 1.2rem 0;
+}
 .book-name {
     font-family: "PT Serif", "Noto Sans Armenian", "Noto Sans Bengali", serif;
     line-height: 1.5;
@@ -395,6 +403,9 @@ input:focus:-ms-input-placeholder {
     .px-md-5 {
         padding-right: 5rem !important;
         padding-left: 5rem !important;
+    }
+    h3 {
+        font-size: calc(1.3rem + .6vw);
     }
 }
 
@@ -427,4 +438,29 @@ input:focus:-ms-input-placeholder {
     border-left: 2px solid var(--sv-quote-border);
     padding: 10px 20px;
     margin: 15px 0 0 0;
+}
+
+.paragraph.book-mode {
+    padding-bottom: 0 !important;
+}
+
+.page-book-name {
+    font-family: "PT Serif", "Noto Sans Armenian", "Noto Sans Bengali", serif;
+    line-height: 1.5;
+    padding: 5px 0;
+
+    position: sticky;
+    top: 125px;
+    z-index: 998;
+    background-color: var(--bs-body-bg);
+}
+.page-book-name h3 {
+    font-size: calc(1rem + .6vw);
+}
+
+.position-link:before {
+    display: block;
+    content: "";
+    height: 250px;
+    margin: -250px 0 0;
 }

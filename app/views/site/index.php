@@ -7,6 +7,7 @@
  * @var string $errorQueryMessage
  */
 
+use app\widgets\FollowParagraph;
 use app\widgets\NeighboringParagraphs;
 use app\widgets\ScrollWidget;
 use app\widgets\SearchResultsSummary;
@@ -122,7 +123,10 @@ $inputTemplate = '<div class="input-group mb-2">
                             <div>
 
                             </div>
-                            <div><?= Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?></div>
+                            <div>
+                                <?php Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?>
+                                <?= FollowParagraph::widget(['paragraph' => $paragraph, 'pagination' => $pagination]); ?>
+                            </div>
                           </div>
                         </div>
                         <div>
