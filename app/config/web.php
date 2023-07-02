@@ -49,6 +49,7 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
+            'hostInfo' => $params['frontendHostInfo'],
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
