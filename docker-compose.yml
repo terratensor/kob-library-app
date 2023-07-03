@@ -20,6 +20,7 @@ services:
       COOKIE_VALIDATION_KEY_FILE: /run/secrets/app_cookie_validation_key
     secrets:
       - app_db_password
+      - app_cookie_validation_key
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./app:/app:delegated
