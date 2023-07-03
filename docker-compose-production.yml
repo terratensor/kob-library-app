@@ -22,6 +22,7 @@ services:
       COOKIE_VALIDATION_KEY_FILE: /run/secrets/app_cookie_validation_key
     secrets:
       - app_db_password
+      - app_cookie_validation_key
     deploy:
       placement:
         constraints: [ node.role == manager ]
