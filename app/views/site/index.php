@@ -123,7 +123,7 @@ $inputTemplate = '<div class="input-group mb-2">
                             <div>
 
                             </div>
-                            <div>
+                            <div class="paragraph-context">
                                 <?= Html::a("#" . $paragraph->getId(), ['site/neighboring', 'id' => $paragraph->getId(), 'num' => 3]); ?>
                             </div>
                           </div>
