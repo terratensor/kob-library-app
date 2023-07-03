@@ -3,21 +3,22 @@ services:
   php:
     image: yiisoftware/yii2-php:8.1-apache
     networks:
-      - kob-library-net
+      - common-library-net
     environment:
       APP_ENV: dev
       COMPOSER_ALLOW_SUPERUSER: 1
-      FRONTEND_URL: 'http://localhost:8010'
-      GH_REPO_URL: 'https://github.com/terratensor/kob-library-app'
+      FRONTEND_URL: 'http://localhost:8020'
+      GH_REPO_URL: 'https://github.com/terratensor/common-library-app'
       POSTGRES_HOST: postgres
       POSTGRES_USER: app
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
-      POSTGRES_DB: vpsssr-library
+      POSTGRES_DB: common-library
       PAGE_SIZE: 50
       URL_SHORTENER_HOST: url-shortener:8000
       URL_SHORTENER_URL: http://localhost
       COOKIE_DOMAIN: localhost
       COOKIE_VALIDATION_KEY_FILE: /run/secrets/app_cookie_validation_key
+      MANTICORE_DB_NAME_COMMON: common_library
     secrets:
       - app_db_password
       - app_cookie_validation_key
@@ -25,10 +26,10 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./app:/app:delegated
     ports:
-      - '8010:80'
+      - '8020:80'
 
   manticore:
-    container_name: kob-library-manticore
+    container_name: common-library-manticore
     image: manticoresearch/manticore
     ports:
       - "127.0.0.1:9306:9306"
@@ -46,17 +47,17 @@ services:
         soft: -1
         hard: -1
     networks:
-      - kob-library-net
+      - common-library-net
     volumes:
       - manticore:/var/lib/manticore
       - manticore:/var/log/manticore
-      - ./docker/manticore/wordforms.txt:/var/lib/manticore/wordforms.txt
-      - ./docker/manticore/alternateforms.txt:/var/lib/manticore/alternateforms.txt
-      - ./docker/manticore/exceptions.txt:/var/lib/manticore/exceptions.txt
+#      - ./docker/manticore/wordforms.txt:/var/lib/manticore/wordforms.txt
+#      - ./docker/manticore/alternateforms.txt:/var/lib/manticore/alternateforms.txt
+#      - ./docker/manticore/exceptions.txt:/var/lib/manticore/exceptions.txt
       - ./docker/manticore/manticore.conf:/etc/manticoresearch/manticore.conf
 
   postgres:
-    container_name: kob-library-postgres
+    container_name: common-library-postgres
     image: postgres:15.1-alpine
     ports:
       - "54323:5432"
@@ -64,12 +65,12 @@ services:
       APP_ENV: dev
       POSTGRES_HOST: postgres
       POSTGRES_USER: app
-      POSTGRES_DB: vpsssr-library
+      POSTGRES_DB: common-library
       POSTGRES_PASSWORD_FILE: /run/secrets/app_db_password
     secrets:
       - app_db_password
     networks:
-      - kob-library-net
+      - common-library-net
     volumes:
       - postgres:/var/lib/postgresql/data
 
@@ -89,4 +90,4 @@ volumes:
   manticore:
 
 networks:
-  kob-library-net:
+  common-library-net:
