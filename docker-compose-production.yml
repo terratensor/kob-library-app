@@ -19,6 +19,7 @@ services:
       URL_SHORTENER_HOST: http://url-shortener:8000
       URL_SHORTENER_URL: https://svodd.ru
       COOKIE_DOMAIN: svodd.ru
+      COOKIE_VALIDATION_KEY_FILE: /run/secrets/app_cookie_validation_key
     secrets:
       - app_db_password
     deploy:
@@ -87,6 +88,8 @@ volumes:
 secrets:
   app_db_password:
     file: ${APP_DB_PASSWORD_FILE}
+  app_cookie_validation_key:
+    file: ${APP_COOKIE_VALIDATION_KEY_FILE}
 
 networks:
   traefik-public:
