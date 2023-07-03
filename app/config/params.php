@@ -17,7 +17,7 @@ return [
         'pageSize' => (int)getenv('PAGE_SIZE'),
     ],
     'indexes' => [
-        'common' => 'vpsssr_library',
+        'common' =>  getenv('MANTICORE_DB_NAME_COMMON'),
         'concept' => 'vpsssr_library_concept',
     ]
 ];
