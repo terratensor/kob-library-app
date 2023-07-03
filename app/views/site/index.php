@@ -20,7 +20,7 @@ use yii\bootstrap5\LinkPager;
 use yii\data\Pagination;
 
 $this->title = Yii::$app->name;
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = 'Поиск по толстым книгам';
 
 
 echo Html::beginForm(['/site/search-settings'], 'post', ['name' => 'searchSettingsForm', 'class' => 'd-flex']);
@@ -169,7 +169,7 @@ $inputTemplate = '<div class="input-group mb-2">
     </div>
       <?= ScrollWidget::widget(['data_entity_id' => isset($paragraph) ? $paragraph->getId() : 0]); ?>
       <?php else: ?>
-        <div class="card">
+        <div class="card welcome-card">
           <div class="card-body">
             <div class="container px-md-5 px-sm-3 pb-3">
               <div class="py-3">

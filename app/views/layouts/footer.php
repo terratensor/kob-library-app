@@ -6,7 +6,7 @@ use yii\bootstrap5\Html;
 <footer class="footer mt-auto py-3 text-muted">
   <div class="container-fluid">
     <div class="d-flex align-items-baseline justify-content-between">
-      <span><?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>
+      <span>Поиск КОБ
           <?= Html::a('Обратная связь', 'https://svodd.ru/contact'); ?></span>
       <span><?= Html::tag(
               'a',
