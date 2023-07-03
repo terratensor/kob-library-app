@@ -13,7 +13,7 @@ class NeighboringService
 
         $form = new SearchForm();
         $form->matching = 'in';
-        $form->dictionary = true;
+        $form->dictionary = false;
         $form->query = implode(',', $this->getList((int)$paragraphID, (int)$num));
         return $form;
     }
