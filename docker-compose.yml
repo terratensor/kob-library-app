@@ -17,6 +17,7 @@ services:
       URL_SHORTENER_HOST: url-shortener:8000
       URL_SHORTENER_URL: http://localhost
       COOKIE_DOMAIN: localhost
+      COOKIE_VALIDATION_KEY_FILE: /run/secrets/app_cookie_validation_key
     secrets:
       - app_db_password
     volumes:
@@ -79,6 +80,8 @@ services:
 secrets:
   app_db_password:
     file: ./docker/development/secrets/app_db_password
+  app_cookie_validation_key:
+    file: ./docker/development/secrets/app_cookie_validation_key
 
 volumes:
   postgres:
