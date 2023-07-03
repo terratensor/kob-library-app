@@ -4,35 +4,35 @@ use yii\bootstrap5\Nav;
 
 $menuItems = [
     [
-        'label' => 'Поиск',
+        'label' => 'Поиск КОБ',
         'url' => ['/site/index'],
         'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
         'options' => ['class' => 'nav-item col-6 col-lg-auto'],
     ],
-//    [
-//        'label' => 'ФКТ',
-//        'url' => 'https://svodd.ru',
-//        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
-//        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
-//    ],
-//    [
-//        'label' => 'Статистика',
-//        'url' => 'https://svodd.ru/graph',
-//        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
-//        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
-//    ],
-//    [
-//        'label' => 'Обсуждение',
-//        'url' => 'https://svodd.ru/bolshaya-svoddnaya-tema',
-//        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
-//        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
-//    ],
-//    [
-//        'label' => 'Вопросы',
-//        'url' => 'https://svodd.ru/questions',
-//        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
-//        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
-//    ],
+    [
+        'label' => 'ФКТ',
+        'url' => 'https://svodd.ru',
+        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
+        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
+    ],
+    [
+        'label' => 'Статистика',
+        'url' => 'https://svodd.ru/graph',
+        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
+        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
+    ],
+    [
+        'label' => 'Обсуждение',
+        'url' => 'https://svodd.ru/bolshaya-svoddnaya-tema',
+        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
+        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
+    ],
+    [
+        'label' => 'Вопросы',
+        'url' => 'https://svodd.ru/questions',
+        'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
+        'options' => ['class' => 'nav-item col-6 col-lg-auto'],
+    ],
 ];
 
 ?>

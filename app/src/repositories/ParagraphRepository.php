@@ -27,8 +27,7 @@ class ParagraphRepository
     public function __construct(Client $client, $pageSize)
     {
         $this->client = $client;
-        $this->setIndexName(\Yii::$app->params['indexes']['common']);
-        $this->setIndex($this->client->index($this->indexName));
+        $this->setIndex($this->client->index('vpsssr_library'));
         $this->search = new Search($this->client);
         $this->pageSize = $pageSize;
     }
@@ -274,13 +273,5 @@ class ParagraphRepository
             ]
         );
         return $search;
-    }
-
-    /**
-     * @param string $indexName
-     */
-    public function setIndexName(string $indexName): void
-    {
-        $this->indexName = $indexName;
     }
 }
