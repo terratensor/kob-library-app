@@ -31,6 +31,9 @@ services:
         - traefik.docker.network=traefik-public
         - traefik.http.routers.kob-library-app.rule=Host(`kob.svodd.ru`)
         - traefik.http.services.kob-library-app.loadBalancer.server.port=80
+        - traefik.http.middlewares.kob-library-app-redirect.redirectRegex.regex=^(https?://)kob.svodd.ru/(.*)$$
+        - traefik.http.middlewares.kob-library-app-redirect.redirectRegex.replacement=$${1}kob.svodd.ru/$${2}
+        - traefik.http.middlewares.kob-library-app-redirect.redirectRegex.permanent=true
         - traefik.http.routers.kob-library-app.middlewares=frontend-redirect,secure-headers
         - traefik.http.routers.kob-library-app.entryPoints=https
         - traefik.http.routers.kob-library-app.tls=true
