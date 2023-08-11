@@ -20,7 +20,22 @@ use yii\bootstrap5\LinkPager;
 use yii\data\Pagination;
 
 $this->title = Yii::$app->name;
+$this->params['meta_description'] = 'Поиск по текстам толстых книг ВП СССР. Поиск реализуется внутри содержания отдельного параграфа, включая сноски, если они есть';
+
 $this->params['breadcrumbs'][] = 'Поиск по толстым книгам';
+
+$this->registerMetaTag(['property' => 'og:url', 'content' => Yii::$app->urlManager->createAbsoluteUrl('/')]);
+$this->registerMetaTag(['property' => 'og:type', 'content' => 'website']);
+$this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+$this->registerMetaTag(['property' => 'og:description', 'content' => $this->params['meta_description']]);
+
+
+if ($results) {
+    $this->registerMetaTag(['name' => 'robots', 'content' => 'noindex, nofollow']);
+} else {
+    $this->registerLinkTag(['rel' => 'canonical', 'href' => Yii::$app->params['frontendHostInfo']]);
+    $this->registerMetaTag(['name' => 'robots', 'content' => 'index, nofollow']);
+}
 
 
 echo Html::beginForm(['/site/search-settings'], 'post', ['name' => 'searchSettingsForm', 'class' => 'd-flex']);
