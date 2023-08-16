@@ -36,13 +36,13 @@ $menuItems = [
     ],
     [
         'label' => 'Поиск ФКТ',
-        'url' => ['/site/index'],
+        'url' => 'https://svodd.ru',
         'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
         'options' => ['class' => 'nav-item col-12 col-lg-auto d-sm-inline d-lg-none'],
     ],
     [
         'label' => 'Поиск КОБ',
-        'url' => 'https://kob.svodd.ru',
+        'url' => ['/site/index'],
         'linkOptions' => ['class' => 'nav-link py-2 px-0 px-lg-2'],
         'options' => ['class' => 'nav-item col-12 col-lg-auto d-sm-inline d-lg-none'],
     ],
@@ -129,7 +129,7 @@ $menuItems = [
               </a>
             </li>
             <li class="nav-item col-6 col-lg-auto">
-              <a class="nav-link py-2 px-0 px-lg-2" href="https://github.com/terratensor/svodd"
+              <a class="nav-link py-2 px-0 px-lg-2" href="<?= Yii::$app->params['githubRepositoryUrl'] ?>"
                  target="_blank" rel="noopener">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="navbar-nav-svg"
                      viewBox="0 0 512 499.36" role="img"><title>GitHub</title>
