@@ -490,3 +490,7 @@ input:focus:-ms-input-placeholder {
     height: 250px;
     margin: -250px 0 0;
 }
+
+#shortLinkModal .modal-header {
+    padding: 15px 15px 5px 20px;
+}
