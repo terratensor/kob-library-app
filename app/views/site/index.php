@@ -22,7 +22,7 @@ use yii\data\Pagination;
 $this->title = Yii::$app->name;
 $this->params['meta_description'] = 'Поиск по текстам толстых книг ВП СССР. Поиск реализуется внутри содержания отдельного параграфа, включая сноски, если они есть';
 
-// $this->params['breadcrumbs'][] = 'Поиск по толстым книгам';
+$this->params['breadcrumbs'][] = 'Поиск по толстым книгам';
 
 $this->registerMetaTag(['property' => 'og:url', 'content' => Yii::$app->urlManager->createAbsoluteUrl('/')]);
 $this->registerMetaTag(['property' => 'og:type', 'content' => 'website']);
