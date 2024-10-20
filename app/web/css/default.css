@@ -152,6 +152,10 @@
     --dr-search-form-bg: #bdbab6;
     --dr-search-form-body: #19191a;
     --dr-search-form-border: #f9f8f6;
+
+    /* Главное меню */
+    --tw-icon-menu-color-rgb: 173 52 52;
+    --tw-icon-menu-color-theme-rgb: 255 255 255;
 }
 
 [data-bs-theme=dark] {
@@ -247,6 +251,10 @@
 
     /* Цвет рамки danger card */
     --bs-danger-rgb: 165, 0, 0
+
+    /* Главное меню */
+    --tw-icon-menu-color-rgb: 173 52 52;
+    --tw-icon-menu-color-theme-rgb: 173 52 52;
 }
 
 /* СТИЛИ */
@@ -493,4 +501,150 @@ input:focus:-ms-input-placeholder {
 
 #shortLinkModal .modal-header {
     padding: 15px 15px 5px 20px;
+}
+
+/* Общие стили для свод меню */
+
+    margin-top: 2px;
+}
+
+.comment-text .badge,
+.search-block .badge,
+.badge-panel .badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: .125rem;
+    padding: .125rem .475rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.search-block .badge,
+.badge-panel .badge {
+    cursor: pointer;
+}
+
+.badge-filter {
+    gap: .125rem;
+}
+
+.badge-filter .disabled {
+    cursor: default;
+    opacity: 0.65;
+}
+
+.badge-default {
+    color: var(--svodd-badge-default-color);
+    background-color: var(--svodd-badge-default-bg);
+}
+
+.badge-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin-top: 1rem;
+}
+
+.text-svoddWhite-300 {
+    --tw-text-opacity: 1;
+    color: rgb(224 217 217 / var(--tw-text-opacity));
+}
+
+.text-svoddRed-100 {
+    --tw-text-opacity: 1;
+    color: rgb(var(--tw-icon-menu-color-rgb) / var(--tw-text-opacity));
+}
+
+.dropdown-menu.show .active .menu-icon.text-svoddRed-100 {
+    --tw-text-opacity: 1;
+    color: rgb(224 217 217 / var(--tw-text-opacity));
+}
+
+.dropdown-menu.show .active .menu-icon.text-svoddWhite-300 {
+    --tw-text-opacity: 1;
+    color: rgb(var(--tw-icon-menu-color-rgb) / var(--tw-text-opacity));
+}
+
+.badge-aq,
+.badge-svodd,
+.badge-comments,
+.badge-question {
+    --tw-bg-opacity: 1;
+}
+
+.badge-aq {
+    background-color: rgb(189 142 0 / var(--tw-bg-opacity));
+}
+
+.badge-svodd {
+    background-color: rgb(181 29 0 / var(--tw-bg-opacity));
+}
+
+.badge-comments {
+    background-color: rgb(45 126 35 / var(--tw-bg-opacity));
+}
+
+.badge-question {
+    background-color: rgb(45 126 35 / var(--tw-bg-opacity));
+}
+
+.divider {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: var(--bs-border-width) solid;
+    opacity: .25;
+}
+
+.menu-icon {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: 1.5rem;
+}
+
+
+.theme-icon-color {
+    --tw-text-opacity: 1;
+    color: rgb(var(--tw-icon-menu-color-theme-rgb) / var(--tw-text-opacity));
+}
+
+.dropdown-toggle::after {
+    --tw-text-opacity: 1;
+    color: rgb(var(--tw-icon-menu-color-theme-rgb) / var(--tw-text-opacity));
+}
+
+.search-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.star-icon,
+.chart-icon {
+    margin-right: 3px;
+}
+
+.card-footer a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bookmark-icon,
+.bookmark-fill-icon {
+    margin-right: .385rem;
+}
+
+.card-header a {
+    text-decoration: none;
+}
+
+.text-bg-primary {
+    color: #fff !important;
+    background-color: RGBA(163, 0, 0, var(--bs-bg-opacity, 1)) !important;
 }
