@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   php:
-    image: yiisoftware/yii2-php:8.1-apache
+    image: yiisoftware/yii2-php:8.3-apache
     networks:
       - kob-library-net
     environment:

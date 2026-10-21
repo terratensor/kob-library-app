@@ -20,7 +20,8 @@
         "manticoresoftware/manticoresearch-php": "^3.0",
         "ext-iconv": "*",
         "yiisoft/yii2-httpclient": "^2.0",
-        "npm-asset/bootstrap-icons": "^1.10"
+        "npm-asset/bootstrap-icons": "^1.10",
+        "ezyang/htmlpurifier": "^4.17"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
